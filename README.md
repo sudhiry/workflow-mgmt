@@ -1,4 +1,4 @@
-# Create workflow management from scratch
+# Workflow management from scratch
 
 ## Stage 1
 Initial stage assume a workflow is just like any other API. 
