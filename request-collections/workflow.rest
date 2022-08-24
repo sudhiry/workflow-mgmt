@@ -1,0 +1,8 @@
+POST http://localhost:3000/api/workflow
+Content-Type: application/json
+
+{
+  "input": 3
+}
+
+###
