@@ -1,3 +1,7 @@
+GET http://localhost:3000/api/workflow/17d7d6bd-e97a-4535-ae2b-cab90982df44
+Accept: application/json
+
+###
 POST http://localhost:3000/api/workflow
 Content-Type: application/json
 

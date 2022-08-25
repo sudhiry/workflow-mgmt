@@ -4,6 +4,7 @@ import express, {Express} from "express";
 import compression from "compression";
 import cors from "cors";
 import pinoHttpLogger from "pino-http";
+import {connect, disconnect} from "./repositories/db";
 import logger from "./logger";
 import api from "./api";
 
@@ -20,6 +21,18 @@ if(process.env.NODE_ENV === 'production') {
 app.use('/api', api);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    logger.info(`Server started at port ${PORT}`)
+
+// Connect DB then start serving.
+connect().then(() => {
+    app.listen(PORT, () => {
+        logger.info(`Server started at port ${PORT}`)
+    });
 });
+
+// Disconnect DB before exit
+process.on("SIGINT", () => {
+    disconnect().finally(() => {
+        process.exit(0)
+    })
+})
+
